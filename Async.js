@@ -1,3 +1,48 @@
+// using promises
+
+function getButter() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('Husband got butter.');
+            resolve('Butter');
+        }, 2000);
+    });
+}
+
+function getColdDrinks() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('Husband got cold drinks.');
+            resolve('Cold Drink');
+        }, 1000);
+    });
+}
+
+getButter()
+    .then((butter) => {
+        return getColdDrinks();
+    })
+    .then((coldDrinks) => {
+        console.log(`Husband got ${coldDrinks}`);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+
+// Using Async/Await
+
+async function getButterAndColdDrinks() {
+    try {
+        const butter = await getButter();
+        const coldDrinks = await getColdDrinks();
+        console.log(`Husband got ${coldDrinks}`);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+getButterAndColdDrinks();
+
 const posts = [];
 let lastUserActivityTime = null;
 // creating post
@@ -56,6 +101,8 @@ async function managePosts() {
 }
 
 managePosts();
+
+
 
 
 
